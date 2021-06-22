@@ -8,7 +8,7 @@ function RenderMeals({ meal }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setIsLoading(true)
+        setIsLoading(true);
         //get all reviews
         fetch('/api/reviews')
             .then(response => {
@@ -19,12 +19,12 @@ function RenderMeals({ meal }) {
                 }
             })
             .then(data => {
-                setIsLoading(false)
-                setReviews(data)
+                setIsLoading(false);
+                setReviews(data);
             })
             .catch(error => {
-                setError(error)
-                setIsLoading(false)
+                setError(error);
+                setIsLoading(false);
             })
     }, [])
 
@@ -49,7 +49,7 @@ function RenderMeals({ meal }) {
             averageRating = averageRatingArray[0];
         }
     }
-    
+
     if (error) {
         return <p>{error.message}</p>;
     }

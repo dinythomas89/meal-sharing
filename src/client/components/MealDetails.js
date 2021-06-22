@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AddReservation from './AddReservation';
+import AddReview from './AddReview';
 
 const MealDetails = () => {
     //useParams to get the id value for meal
@@ -8,12 +9,14 @@ const MealDetails = () => {
     const [mealById, setMealById] = useState([]);
     const [availableMeals, SetAvailableMeals] = useState([]);
     const [isReservationAvailable, setIsReservationAvailable] = useState(true);
-    const [viewForm, setViewForm] = useState(false);
+    const [viewReservationForm, setViewReservationForm] = useState(false);
+    const [viewReviewForm, setViewReviewForm] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     let filteredMeal;
 
     useEffect(() => {
+        setIsLoading(true);
         //fetch meal detail by getting the meal.id from meals
         fetch(`/api/meals/${params.id}`)
             .then(response => {
@@ -24,17 +27,17 @@ const MealDetails = () => {
                 }
             })
             .then(data => {
-                setIsLoading(false)
-                console.log(data)
+                setIsLoading(false);
                 setMealById(data[0]);
             })
             .catch(error => {
-                setError(error)
-                setIsLoading(false)
+                setError(error);
+                setIsLoading(false);
             })
     }, []);
 
     useEffect(() => {
+        setIsLoading(true);
         //to check whether reservations for particular meal is available
         fetch(`/api/meals?availableReservations=true`)
             .then(response => {
@@ -45,12 +48,12 @@ const MealDetails = () => {
                 }
             })
             .then(data => {
-                setIsLoading(false)
-                SetAvailableMeals(data)
+                setIsLoading(false);
+                SetAvailableMeals(data);
             })
             .catch(error => {
-                setError(error)
-                setIsLoading(false)
+                setError(error);
+                setIsLoading(false);
             })
 
     }, []);
@@ -62,14 +65,19 @@ const MealDetails = () => {
         })
     }
 
-    const onClick = () => {
+    const onReservationClick = () => {
         //only when clicking the button will set the reservation form to be true
         // and check if available reservation is there or not
-        setViewForm(true);
+        setViewReservationForm(true);
+        setViewReviewForm(false);
         if (filteredMeal.length === 0)
             setIsReservationAvailable(false);
     }
-    
+    const onReviewClick = () => {
+        setViewReviewForm(true);
+        setViewReservationForm(false);
+    }
+
     if (error) {
         return <p>{error.message}</p>;
     }
@@ -84,16 +92,23 @@ const MealDetails = () => {
             <p>{mealById.description}</p>
             <p>Location: {mealById.location}</p>
             <p>Price: {mealById.price}</p>
-            <button onClick={onClick}>Reserve</button>
+            <button onClick={onReservationClick}>Reserve</button>
+            <br />
+            <br />
+            <button onClick={onReviewClick}>Add Review</button>
             <br />
             <br />
             <div>
-                {viewForm ?
+                {viewReservationForm ?
                     (isReservationAvailable
-                        ? <AddReservation meal={filteredMeal} setForm={setViewForm} />
+                        ? <AddReservation meal={filteredMeal} setReservationForm={setViewReservationForm} />
                         : `Sorry, no reservation is available for ${mealById.title}`)
                     : ''
                 }
+            </div>
+            <div>
+                {viewReviewForm ?
+                    <AddReview meal={mealById} setReviewForm={setViewReviewForm} /> : ''}
             </div>
         </div>
     )

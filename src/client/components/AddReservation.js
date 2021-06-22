@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import postData from './postData';
 
-function AddReservation({ meal, setForm }) {
+function AddReservation({ meal, setReservationForm }) {
     //setting the initial values for input fields
     //link->dev.to/deboragaleano/how-to-handle-multiple-inputs-in-react-55el
     const initialValues = {
@@ -32,15 +32,15 @@ function AddReservation({ meal, setForm }) {
             meal_id: meal[0].meal_id,
             created_date: new Date().toISOString().split('T')[0]
         }
-        const response = postData('api/reservations', formData)
+        const response = postData('api/reservations', formData);
         if (response) {
-            const message = `Your reservation for ${values.noOfGuests} persons is booked`
-            alert(message)
+            const message = `Your reservation for ${values.noOfGuests} persons is booked`;
+            alert(message);
         }
         else {
-            alert(`The reservation was not successful. Please try again..`)
+            alert(`The reservation was not successful. Please try again..`);
         }
-        setForm(false)
+        setReservationForm(false);
     }
 
     return (

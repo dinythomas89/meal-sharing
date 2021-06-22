@@ -9,7 +9,7 @@ function Meals() {
 
     useEffect(() => {
         if (searchMeal === '') {
-            setIsLoading(true)
+            setIsLoading(true);
             //get all meals if there is no search value 
             fetch('/api/meals')
                 .then(response => {
@@ -20,15 +20,16 @@ function Meals() {
                     }
                 })
                 .then(data => {
-                    setIsLoading(false)
-                    setMeals(data)
+                    setIsLoading(false);
+                    setMeals(data);
                 })
                 .catch(error => {
-                    setError(error)
-                    setIsLoading(false)
+                    setError(error);
+                    setIsLoading(false);
                 })
         }
         else {
+            setIsLoading(true);
             //search meal based on user input
             fetch(`/api/meals?title=${searchMeal}`)
                 .then(response => {
@@ -39,12 +40,12 @@ function Meals() {
                     }
                 })
                 .then(data => {
-                    setIsLoading(false)
-                    setMeals(data)
+                    setIsLoading(false);
+                    setMeals(data);
                 })
                 .catch(error => {
-                    setError(error)
-                    setIsLoading(false)
+                    setError(error);
+                    setIsLoading(false);
                 })
         }
     }, [searchMeal])//state will change when searchMeal is changed
