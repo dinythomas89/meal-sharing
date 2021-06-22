@@ -4,24 +4,56 @@ import RenderMeals from './RenderMeals';
 function Meals() {
     const [meals, setMeals] = useState([]);
     const [searchMeal, setSearchMeal] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (searchMeal === '') {
+            setIsLoading(true)
             //get all meals if there is no search value 
             fetch('/api/meals')
-                .then(response => response.json())
-                .then(data => setMeals(data));
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Something went wrong ...');
+                    }
+                })
+                .then(data => {
+                    setIsLoading(false)
+                    setMeals(data)
+                })
+                .catch(error => {
+                    setError(error)
+                    setIsLoading(false)
+                })
         }
         else {
             //search meal based on user input
             fetch(`/api/meals?title=${searchMeal}`)
-                .then(response => response.json())
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Something went wrong ...');
+                    }
+                })
                 .then(data => {
+                    setIsLoading(false)
                     setMeals(data)
-                });
+                })
+                .catch(error => {
+                    setError(error)
+                    setIsLoading(false)
+                })
         }
     }, [searchMeal])//state will change when searchMeal is changed
-
+    if (error) {
+        return <p>{error.message}</p>;
+    }
+    if (isLoading) {
+        return <p>Loading ...</p>;
+    }
     return (
         <div className="meals">
             <h1>Meals</h1>

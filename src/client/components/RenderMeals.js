@@ -4,12 +4,27 @@ import mealImage from '../meal-image.png';
 
 function RenderMeals({ meal }) {
     const [reviews, setReviews] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
+        setIsLoading(true)
         //get all reviews
         fetch('/api/reviews')
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
             .then(data => {
-                setReviews(data);
+                setIsLoading(false)
+                setReviews(data)
+            })
+            .catch(error => {
+                setError(error)
+                setIsLoading(false)
             })
     }, [])
 
@@ -34,7 +49,13 @@ function RenderMeals({ meal }) {
             averageRating = averageRatingArray[0];
         }
     }
-
+    
+    if (error) {
+        return <p>{error.message}</p>;
+    }
+    if (isLoading) {
+        return <p>Loading ...</p>;
+    }
     return (
         <div>
             <Link

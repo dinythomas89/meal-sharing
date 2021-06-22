@@ -9,23 +9,50 @@ const MealDetails = () => {
     const [availableMeals, SetAvailableMeals] = useState([]);
     const [isReservationAvailable, setIsReservationAvailable] = useState(true);
     const [viewForm, setViewForm] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     let filteredMeal;
 
     useEffect(() => {
         //fetch meal detail by getting the meal.id from meals
         fetch(`/api/meals/${params.id}`)
-            .then(res => res.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
             .then(data => {
+                setIsLoading(false)
+                console.log(data)
                 setMealById(data[0]);
+            })
+            .catch(error => {
+                setError(error)
+                setIsLoading(false)
             })
     }, []);
 
     useEffect(() => {
         //to check whether reservations for particular meal is available
         fetch(`/api/meals?availableReservations=true`)
-            .then(res => res.json())
-            .then(data =>
-                SetAvailableMeals(data));
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong ...');
+                }
+            })
+            .then(data => {
+                setIsLoading(false)
+                SetAvailableMeals(data)
+            })
+            .catch(error => {
+                setError(error)
+                setIsLoading(false)
+            })
+
     }, []);
 
     if (availableMeals) {
@@ -41,6 +68,13 @@ const MealDetails = () => {
         setViewForm(true);
         if (filteredMeal.length === 0)
             setIsReservationAvailable(false);
+    }
+    
+    if (error) {
+        return <p>{error.message}</p>;
+    }
+    if (isLoading) {
+        return <p>Loading ...</p>;
     }
 
     return (
