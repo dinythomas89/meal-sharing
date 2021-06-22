@@ -6,8 +6,8 @@
 }
 
 #root {
-  padding-left: 30%;
-  padding-right: 30%;
+  padding-left: 10%;
+  padding-right: 10%;
   height: 100vh;
 }
 
@@ -28,19 +28,18 @@ a {
 }
 
 button {
-  background-color: #3e99c0;
+  background-color: #ba538f;
   border-radius: 8px;
   border-width: 0px;
   font-weight: 295;
   color: rgb(255, 255, 255);
-  padding: 5px;
-  font-size: 17px;
+  padding: 10px 15px;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 1400px) {
   #root {
-    padding-left: 30%;
-    padding-right: 30%;
+    padding: 2% 5%;
   }
 }
 
