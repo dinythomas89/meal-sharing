@@ -1,5 +1,6 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
+import './Footer.css';
 
 function Footer() {
     return (
@@ -9,7 +10,7 @@ function Footer() {
                 <p>Thank you to all the mentors, friends and family who helped me in the journey to become a web developer</p>
             </div>
             <div>
-                <p>2021 Copyright @ Diny Thomas.</p> 
+                <p>2021 Copyright @ Diny Thomas.</p>
                 <p>All Rights Reserved.</p>
             </div>
             <div>

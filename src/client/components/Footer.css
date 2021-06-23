@@ -1,0 +1,19 @@
+.footer{
+    background-color: #8860D0;
+    color: black;
+    border: 1px solid black;
+    padding: 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer>div{
+    width: 30%;
+  }
+  
+  .footer span{
+    padding: 5px;
+  }
+  

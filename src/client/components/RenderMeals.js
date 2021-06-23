@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import mealImage from '../meal-image.png';
+import StarRating from './StarRating';
 
 function RenderMeals({ meal }) {
     const [reviews, setReviews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    
     useEffect(() => {
         setIsLoading(true);
         //get all reviews
@@ -41,7 +42,7 @@ function RenderMeals({ meal }) {
             const duplicateRatingsInAMeal = mealWithRating.map(star => star.stars);
             const totalRatings = duplicateRatingsInAMeal
                 .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            averageRating = totalRatings / duplicateRatingsInAMeal.length;
+            averageRating = Math.round(totalRatings / duplicateRatingsInAMeal.length);
         }
         else {
             //if no duplicate values exist get the star value as average rating
@@ -56,6 +57,7 @@ function RenderMeals({ meal }) {
     if (isLoading) {
         return <p>Loading ...</p>;
     }
+
     return (
         <div>
             <Link
@@ -65,11 +67,15 @@ function RenderMeals({ meal }) {
                 <br />
                 <span className="meal-title">{meal.title}</span>
             </Link>
-            {averageRating ?
-                <p>Rating: {averageRating}</p>
-                :
-                <p>Rating: No rating </p>
-            }
+            <div className="meal-star-container">
+                {averageRating ?
+                    (
+                        <StarRating totalStars={averageRating} isStarSelected={false} />
+                    )
+                    :
+                    <p>No rating yet </p>
+                }
+            </div>
             <br />
         </div>
     )

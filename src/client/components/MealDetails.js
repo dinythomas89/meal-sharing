@@ -87,29 +87,33 @@ const MealDetails = () => {
 
     return (
         <div className="meal-details">
-            <h1>Meal details</h1>
-            <h3>{mealById.title}</h3>
-            <p>{mealById.description}</p>
-            <p>Location: {mealById.location}</p>
-            <p>Price: {mealById.price}</p>
-            <button onClick={onReservationClick}>Reserve</button>
-            <br />
-            <br />
-            <button onClick={onReviewClick}>Add Review</button>
-            <br />
-            <br />
-            <div>
-                {viewReservationForm ?
-                    (isReservationAvailable
-                        ? <AddReservation meal={filteredMeal} setReservationForm={setViewReservationForm} />
-                        : `Sorry, no reservation is available for ${mealById.title}`)
-                    : ''
-                }
-            </div>
-            <div>
-                {viewReviewForm ?
-                    <AddReview meal={mealById} setReviewForm={setViewReviewForm} /> : ''}
-            </div>
+            <section>
+                <h1>Meal details</h1>
+
+                <h3>{mealById.title}</h3>
+                <p>{mealById.description}</p>
+                <p>Location: {mealById.location}</p>
+                <p>Price: {mealById.price}</p>
+                <button onClick={onReservationClick}>Reserve</button>
+                <br />
+                <br />
+                <button onClick={onReviewClick}>Add Review</button>
+                <br />
+                <br />
+                <div>
+                    {viewReservationForm ?
+                        (isReservationAvailable
+                            ? <AddReservation meal={filteredMeal} setReservationForm={setViewReservationForm} />
+                            : `Sorry, no reservation is available for ${mealById.title}`)
+                        : ''
+                    }
+                </div>
+                <div>
+                    {viewReviewForm ?
+                        <AddReview meal={mealById} setReviewForm={setViewReviewForm} /> : ''}
+                </div>
+                <br />
+            </section>
         </div>
     )
 }

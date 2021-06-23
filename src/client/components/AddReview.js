@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import postData from './postData';
+import StarRating from './StarRating';
 
+//same as AddReservation.js
 function AddReview({ meal, setReviewForm }) {
     const initialValues = {
         title: "",
@@ -8,6 +10,7 @@ function AddReview({ meal, setReviewForm }) {
         stars: ""
     };
     const [values, setValues] = useState(initialValues);
+    const [isStarSelected, setIsStarSelected] = useState(true);
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setValues({
@@ -38,7 +41,7 @@ function AddReview({ meal, setReviewForm }) {
         <form >
             <h2>Review form</h2>
             <p className="important-message">Please fill out all the fields</p>
-            <input
+            <input className="add-review"
                 type="text"
                 value={values.title}
                 onChange={handleInputChange}
@@ -47,8 +50,8 @@ function AddReview({ meal, setReviewForm }) {
                 required
             />
             <br />
-            <input
-                type="text"
+            <textarea className="add-review"
+                rows="4"
                 value={values.description}
                 onChange={handleInputChange}
                 name="description"
@@ -56,14 +59,7 @@ function AddReview({ meal, setReviewForm }) {
                 required
             />
             <br />
-            <input
-                type="number"
-                value={values.stars}
-                onChange={handleInputChange}
-                name="stars"
-                placeholder="Rating"
-                required
-            />
+            <StarRating totalStars={5} isStarSelected={true} />
             <br />
             <button onClick={onSubmit} >Submit</button>
         </form>
