@@ -38,7 +38,7 @@ router.get("/", async (request, response) => {
 
     //to get meals that partially match a title.
     if ('title' in request.query) {
-      const title = request.query.title;
+      const title = request.query.title.toLowerCase();
       const mealWithGivenTitle = await knex("meal").where('title', 'like', "%" + title + "%");
       response.send(mealWithGivenTitle);
     }
@@ -66,7 +66,7 @@ router.get("/", async (request, response) => {
     }
 
     //Returns all meals
-    const meals = await knex("meal");
+    const meals = await knex("meal").select();
     response.send(meals);
   }
   catch (error) {

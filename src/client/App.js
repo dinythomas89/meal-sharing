@@ -5,8 +5,8 @@ import AddMeal from "./components/AddMeal";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import MealDetails from "./components/MealDetails";
-import Meals from "./components/Meals";
+import AMealById from "./components/AMealById";
+import GetMeals from "./components/GetMeals";
 import TestComponent from "./components/TestComponent/TestComponent";
 
 function App() {
@@ -17,10 +17,10 @@ function App() {
         <Home />
       </Route>
       <Route exact path="/meals">
-        <Meals />
+        <GetMeals />
       </Route>
       <Route exact path='/meals/:id'>
-        <MealDetails />
+        <AMealById />
       </Route>
       <Route exact path="/addMeal">
         <AddMeal />

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import AddReservation from './AddReservation';
 import AddReview from './AddReview';
 
-const MealDetails = () => {
+const AMealById = () => {
     //useParams to get the id value for meal
     const params = useParams(); //console.log->['id', 2]
     const [mealById, setMealById] = useState([]);
@@ -12,7 +12,6 @@ const MealDetails = () => {
     const [viewReservationForm, setViewReservationForm] = useState(false);
     const [viewReviewForm, setViewReviewForm] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
     let filteredMeal;
 
     useEffect(() => {
@@ -29,10 +28,6 @@ const MealDetails = () => {
             .then(data => {
                 setIsLoading(false);
                 setMealById(data[0]);
-            })
-            .catch(error => {
-                setError(error);
-                setIsLoading(false);
             })
     }, []);
 
@@ -51,11 +46,6 @@ const MealDetails = () => {
                 setIsLoading(false);
                 SetAvailableMeals(data);
             })
-            .catch(error => {
-                setError(error);
-                setIsLoading(false);
-            })
-
     }, []);
 
     if (availableMeals) {
@@ -78,18 +68,12 @@ const MealDetails = () => {
         setViewReservationForm(false);
     }
 
-    if (error) {
-        return <p>{error.message}</p>;
-    }
-    if (isLoading) {
-        return <p>Loading ...</p>;
-    }
-
     return (
         <div className="meal-details">
+            {isLoading &&
+                <h2>Loading...</h2>}
             <section>
                 <h1>Meal details</h1>
-
                 <h3>{mealById.title}</h3>
                 <p>{mealById.description}</p>
                 <p>Location: {mealById.location}</p>
@@ -118,4 +102,4 @@ const MealDetails = () => {
     )
 }
 
-export default MealDetails;
+export default AMealById;

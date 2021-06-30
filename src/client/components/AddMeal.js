@@ -51,67 +51,70 @@ function AddMeal() {
 
     return (
         <form className="new-meal">
-            <h2>Add a meal</h2>
-            <p className="important-message">Please fill out all the fields</p>
-            <br />
-            <input
-                type="text"
-                value={values.title}
-                onChange={handleInputChange}
-                name="title"
-                placeholder="Title"
-                required
-            />
-            <br />
-            <input
-                type="text"
-                value={values.description}
-                onChange={handleInputChange}
-                name="description"
-                placeholder="Description"
-                required
-            />
-            <br />
-            <input
-                type="text"
-                value={values.location}
-                onChange={handleInputChange}
-                name="location"
-                placeholder="Location"
-                required
-            />
-            <br />
-            <DatePicker className="date-picker"
-                dateFormat="yyyy-MM-dd"
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                minDate={new Date()}
-                placeholderText="yyyy-mm-dd"
-                required
-            />
-            <br />
-            <input
-                type="number"
-                value={values.max_reservations}
-                onChange={handleInputChange}
-                name="max_reservations"
-                min="1"
-                placeholder="Maximum reservations"
-                required
-            />
-            <br />
-            <input
-                type="number"
-                value={values.price}
-                onChange={handleInputChange}
-                name="price"
-                placeholder="Price"
-                required
-            />
-            <br />
-            <button onClick={onSubmit} >Submit</button>
-            <br />
-            <br />
+            <div>
+                <h2>Add a meal</h2>
+                <p className="important-message">Please fill out all the fields</p>
+                <br />
+                <input
+                    type="text"
+                    value={values.title}
+                    onChange={handleInputChange}
+                    name="title"
+                    placeholder="Title"
+                    required
+                />
+                <br />
+                <input
+                    type="text"
+                    value={values.description}
+                    onChange={handleInputChange}
+                    name="description"
+                    placeholder="Description"
+                    required
+                />
+                <br />
+                <input
+                    type="text"
+                    value={values.location}
+                    onChange={handleInputChange}
+                    name="location"
+                    placeholder="Location"
+                    required
+                />
+                <br />
+                <DatePicker className="date-picker"
+                    dateFormat="yyyy-MM-dd"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    minDate={new Date()}
+                    placeholderText="yyyy-mm-dd"
+                    required
+                />
+                <br />
+                <input
+                    type="number"
+                    value={values.max_reservations}
+                    onChange={handleInputChange}
+                    name="max_reservations"
+                    min="1"
+                    placeholder="Maximum reservations"
+                    required
+                />
+                <br />
+                <input
+                    type="number"
+                    value={values.price}
+                    onChange={handleInputChange}
+                    name="price"
+                    placeholder="Price"
+                    required
+                />
+                <br />
+                <br />
+                <button onClick={onSubmit} >Submit</button>
+                <br />
+                <br />
+            </div>
         </form>
     )
 }

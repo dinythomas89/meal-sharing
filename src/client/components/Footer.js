@@ -6,8 +6,9 @@ function Footer() {
     return (
         <footer className="footer">
             <div>
-                <h3>Thank you</h3>
-                <p>Thank you to all the mentors, friends and family who helped me in the journey to become a web developer</p>
+                <h3>Lovely Meal Sharing</h3>
+                <p>Wall street, Norreport</p>
+                <p>15.00 to 20.00- all days</p>
             </div>
             <div>
                 <p>2021 Copyright @ Diny Thomas.</p>
