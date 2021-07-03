@@ -117,6 +117,9 @@ select {
     width: 20em;
     height: 15em;
   }
+  .search-bar {
+    width: 90%;
+  }
   input,
   textarea,
   select {
@@ -146,6 +149,9 @@ select {
   .meal-image {
     width: 15em;
     height: 10em;
+  }
+  .search-bar {
+    width: 90%;
   }
   input,
   textarea,
