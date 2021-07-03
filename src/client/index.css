@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@import 'theme.css';
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import "theme.css";
 * {
   box-sizing: border-box;
 }
@@ -27,7 +27,7 @@ a {
 }
 
 button {
-  background-color: #A16E83;
+  background-color: #a16e83;
   border-radius: 8px;
   border-width: 0px;
   font-weight: 295;
