@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import postData from "./postData";
+
+import postData from "../utils/postData";
 
 function AddReservation({ meal, setReservationForm }) {
   //setting the initial values for input fields

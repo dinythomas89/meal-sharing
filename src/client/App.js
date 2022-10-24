@@ -1,12 +1,13 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import AddMeal from "./components/AddMeal";
+import AddMeal from "./components/Meals/AddMeal";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import AMealById from "./components/AMealById";
-import GetMeals from "./components/GetMeals";
+import AMealById from "./components/Meals/AMealById";
+import GetMeals from "./components/Meals/GetMeals";
 import TestComponent from "./components/TestComponent/TestComponent";
 
 function App() {

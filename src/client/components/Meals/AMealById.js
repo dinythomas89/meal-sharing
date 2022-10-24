@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import useMealById from "./useMealById";
-import useMealAvailability from "./useMealAvailability";
+
+import useMealById from "../utils/useMealById";
+import useMealAvailability from "../utils/useMealAvailability";
 import AddReservation from "./AddReservation";
 import AddReview from "./AddReview";
 

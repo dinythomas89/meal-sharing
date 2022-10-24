@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import postData from "./postData";
 import ReactStars from "react-rating-stars-component";
+
+import postData from "../utils/postData";
 
 //same as AddReservation.js
 function AddReview({ meal, setReviewForm }) {
@@ -10,6 +11,7 @@ function AddReview({ meal, setReviewForm }) {
     stars: "",
   };
   const [values, setValues] = useState(initialValues);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -17,10 +19,12 @@ function AddReview({ meal, setReviewForm }) {
       [name]: value,
     });
   };
+
   let newStars;
   const ratingChanged = (newRating) => {
     newStars = newRating;
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -30,6 +34,7 @@ function AddReview({ meal, setReviewForm }) {
       meal_id: meal.id,
       created_date: new Date().toISOString().split("T")[0],
     };
+    
     const response = postData("api/reviews", formData);
     if (response) {
       alert(`Thank you for your feedback`);

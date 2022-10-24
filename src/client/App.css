@@ -7,7 +7,7 @@
 .meal-details,
 .new-meal {
   padding: 20px;
-  background-color: #d0d82f;
+  background-color: #dadf79;
   text-align: center;
   border-left: 1px solid black;
   border-right: 1px solid black;
@@ -88,9 +88,13 @@ select {
 .react-datepicker-wrapper,
 .react-datepicker__input-container,
 .react-datepicker__input-container input {
-  width: 63%;
+  width: 63%; 
   display: inline-block;
 }
+
+.react-datepicker__input-container .date-picker{
+  width: 40%;
+} 
 
 .review-form div {
   text-align: left;

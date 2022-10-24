@@ -1,6 +1,7 @@
 import React from "react";
-import mealImages from "./mealImages";
-import RandomImage from "../meal-image.png";
+
+import mealImages from "../utils/mealImages";
+import RandomImage from "../../meal-image.png";
 
 function MealImage({ mealTitle }) {
   let mealImage;

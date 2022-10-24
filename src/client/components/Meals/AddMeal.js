@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import postData from "./postData";
+
+import postData from "../utils/postData";
 
 function AddMeal() {
   //same as AddReservation. To set the initial values

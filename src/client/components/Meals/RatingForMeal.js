@@ -41,6 +41,7 @@ function RatingForMeal({ mealId }) {
       averageRating = averageRatingArray[0];
     }
   }
+  
   return (
     <div className="meal-star-container">
       {averageRating ? (
