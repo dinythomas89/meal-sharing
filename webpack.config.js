@@ -27,7 +27,10 @@ module.exports = {
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000',
+        use: {
+          loader: 'url-loader',
+          options: { limit: 100000 }
+        },
       },
     ],
   },
@@ -35,7 +38,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   devServer: {
-    publicPath: '/',
+    static: '/',
     historyApiFallback: true,
     port: parseInt(process.env.CLIENT_PORT, 10),
     open: process.env.OPEN_BROWSER === 'true' ? true : false,
@@ -44,9 +47,9 @@ module.exports = {
     },
   },
   node: {
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty',
+    global: false,
+    __filename: false,
+    __dirname: false,
   },
   plugins: [
     new HtmlWebpackPlugin({
